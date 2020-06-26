@@ -9,7 +9,13 @@ git clone http://github.com/libstorage/libstoragemgmt || exit 1
 
 cd /tmp/libstoragemgmt || exit 1
 
-# Get all the needed filed
+export DEBIAN_FRONTEND="noninteractive"
+apt-get update
+apt-get install -y tzdata
+ln -fs /usr/share/zoneinfo/GMT /etc/localtime
+dpkg-reconfigure --frontend noninteractive tzdata
+
+# Get all the needed files
 apt-get install $(cat ./deb_dependency) -y -q || exit 1
 
 ./autogen.sh || exit 1
@@ -17,7 +23,7 @@ apt-get install $(cat ./deb_dependency) -y -q || exit 1
 # Not all the libraries for py3 exist
 ./configure --with-python2 || exit 1
 
-make || exit 1
+V=1 make || exit 1
 
 # Setup some  symlinks
 ln -s `pwd`/plugin `pwd`/python_binding/lsm/plugin  || exit 1

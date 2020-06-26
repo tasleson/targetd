@@ -39,7 +39,7 @@ echo "Dumping targetd output ..."
 cat /tmp/targetd.log
 
 # get/buid/run libstoragemgmt tests
-./lsm_test.sh || exit 1
+./test/lsm_test.sh || exit 1
 
 # Run the actual tests, these need work ...
 echo "Running client test ..."
