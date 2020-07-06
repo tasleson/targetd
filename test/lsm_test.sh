@@ -50,4 +50,6 @@ if [ $rc -ne 0 ]; then
     exit $rc
 fi
 
-exit 1
+# Exit success
+exit 0
+
